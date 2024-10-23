@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECサイト</title>
+
+    <link rel="stylesheet" href="css/component.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/slide.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <a class="logo-a" href="index.html">サイトロゴ</a>
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="ring.html">リング</a></li>
+          <li><a href="necklace.html">ネックレス</a></li>
+          <li><a href="pendant.html">ペンダント</a></li>
+          <li><a href="bracelet.html">ブレスレット</a></li>
+          <li><a href="pierced.html">イヤリング・ピアス</a></li>
+        </ul>
+
+        <div class="icons">
+          <i class="cart-icon"
+            ><a href="shopingbag.html"
+              ><img class="menu" src="assets/bag.png" /></a
+          ></i>
+          <i class="mail-icon"
+            ><a href="mail.html"><img class="menu" src="assets/mail.png" /></a
+          ></i>
+          <i class="account-icon"
+            ><a href="shop-info.html"
+              ><img class="menu" src="assets/map.png" /></a
+          ></i>
+        </div>
+
+        <div class="search-bar">
+          <form id="search-form" class="search-form-3">
+            <label>
+              <input
+                type="text"
+                id="search-query"
+                placeholder="キーワードを入力"
+              />
+            </label>
+            <button type="submit" aria-label="検索"></button>
+          </form>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="section">
+        <div class="sliderArea">
+          <div class="full-screen slider">
+            <div><img src="images/big1.jpg" alt="125naroom" /></div>
+            <div><img src="images/big2.jpg" alt="125naroom" /></div>
+            <div><img src="images/big3.jpg" alt="125naroom" /></div>
+          </div>
+        </div>
+      </div>
+
+      <section class="new-products">
+        <h2 style="font-family: 'Times New Roman', Times, serif">
+          新商品・注目商品
+        </h2>
+        <div class="product-grid">
+          <!-- 商品がここにランダムに挿入されます -->
+        </div>
+      </section>
+
+      <div class="more">
+        <a class="moremore" href="productlist.html">もっとみる</a>
+      </div>
+    </main>
+
+    <footer>
+      <div class="foot">
+        <p>
+          <a href="legalnotice.html" class="tsth">特定商法取引法に基づく表記</a>
+        </p>
+        <p class="copy">&copy; 2024 Tanabe Sho</p>
+      </div>
+    </footer>
+
+    <script>
+      async function fetchProducts() {
+        try {
+          const response = await fetch("assets/products.json");
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const products = await response.json();
+
+          // localStorageにデータを上書き保存
+          localStorage.setItem("products", JSON.stringify(products));
+          console.log("JSONデータがlocalStorageに上書き保存されました");
+
+          // 商品をランダムに表示
+          displayRandomProducts(products);
+        } catch (error) {
+          console.error("JSONファイルの読み込みに失敗しました:", error);
+        }
+      }
+
+      // ランダムに商品を表示する関数
+      function displayRandomProducts(productList) {
+        const randomProducts = [];
+
+        while (randomProducts.length < 10) {
+          const randomIndex = Math.floor(Math.random() * productList.length);
+          const randomProduct = productList[randomIndex];
+
+          if (!randomProducts.includes(randomProduct)) {
+            randomProducts.push(randomProduct);
+          }
+        }
+
+        const productGrid = document.querySelector(".product-grid");
+        randomProducts.forEach((product) => {
+          const productItem = document.createElement("div");
+          productItem.classList.add("product-item");
+
+          // 商品画像が配列の場合、最初の画像を取得
+          const productImage = Array.isArray(product.image)
+            ? product.image[0]
+            : product.image;
+
+          productItem.innerHTML = `
+                    <div class="product-image">
+                        <a href="productdetail.html?id=${product.id}">
+                            <img src="${productImage}" alt="${
+            product.name
+          }" loading="lazy">
+                        </a>
+                    </div>
+                    <p>${product.name}</p>
+                    <p>¥${product.price.toLocaleString()}</p>
+                `;
+          productGrid.appendChild(productItem);
+        });
+      }
+
+      // 商品を表示するためにページロード時にfetchProductsを呼び出す
+      window.onload = fetchProducts;
+
+      // スライダーの設定
+      $(document).on("ready", function () {
+        $(".full-screen").slick({
+          centerMode: true,
+          centerPadding: "-20%",
+          dots: true,
+          autoplay: true,
+          autoplaySpeed: 3000,
+          speed: 1000,
+          slidesToShow: 1,
+          loop: true,
+        });
+      });
+
+      // 検索フォームのイベントリスナーを追加
+      document
+        .getElementById("search-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // フォームのデフォルト動作を無効化
+
+          const searchQuery = document.getElementById("search-query").value;
+
+          // クエリパラメータを付けて検索結果ページに遷移
+          if (searchQuery) {
+            window.location.href = `search.html?query=${encodeURIComponent(
+              searchQuery
+            )}`;
+          }
+        });
+    </script>
+  </body>
+</html>

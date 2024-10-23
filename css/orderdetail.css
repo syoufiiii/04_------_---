@@ -1,0 +1,103 @@
+
+.container {
+    width: 60%;
+    margin: 0 auto;
+    padding: 150px 20px 20px 20px;
+    min-height: 1050px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.order-summary, .payment-method, .shipping-info {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+#wrap{
+    max-height: 300px;
+    min-height: 300px;
+    overflow-y: auto; /* 垂直スクロールを有効にする */
+}
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.order-item img {
+    width: 80px;
+    height: 80px;
+    background-color: #f0f0f0;
+    object-fit: cover;
+}
+
+.item-info {
+    flex-grow: 1;
+    padding-left: 20px;
+}
+
+.item-info p {
+    margin: 5px 0;
+}
+
+.total {
+    text-align: right;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.submit-btn {
+    width: 300px;
+    padding: 15px;
+    margin-left: 22vw;
+    background-color: #1e50a2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 5px;
+}
+
+.submit-btn:hover {
+    background-color: #1579c0;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+/* 支払い情報と変更ボタンの横並び */
+.payment-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.change-btn {
+    padding: 8px 12px;
+    background-color: #1e50a2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.change-btn a {
+    text-decoration: none;
+    color: white;
+}
+.change-btn:hover{
+    background-color: #1579c0;
+}

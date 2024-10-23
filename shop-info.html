@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECサイト</title>
+    
+    <link rel="stylesheet" href="css/component.css">
+    <link rel="stylesheet" href="css/shop-info.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+</head>
+
+
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a class="logo-a" href="index.html">サイトロゴ</a></div>
+
+
+        
+            <ul class="nav-links">
+                <li><a href="ring.html">リング</a></li>
+                <li><a href="necklace.html">ネックレス</a></li>
+                <li><a href="pendant.html">ペンダント</a></li>
+                <li><a href="bracelet.html">ブレスレット</a></li>
+                <li><a href="pierced.html">イヤリング・ピアス</a></li>
+            </ul>
+
+
+        
+            <div class="icons">
+                <i class="cart-icon"><a href="shopingbag.html"><img class="menu" src="assets/bag.png"></a></i>
+                <i class="mail-icon"><a href="mail.html"><img class="menu" src="assets/mail.png"></a></i>
+                <i class="account-icon"><a href="shop-info.html"><img class="menu" src="assets/map.png"></a></i>
+            </div>
+
+            <div class="search-bar">
+                <form id="search-form" class="search-form-3">
+                    <label>
+                        <input type="text" id="search-query" placeholder="キーワードを入力">
+                    </label>
+                    <button type="submit" aria-label="検索"></button>
+                </form>
+            </div>
+        </nav>
+
+
+    </header>
+
+    <main>
+        <div id="wrap">
+            <div id="googlemap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3261.5217632485524!2d136.88440937566384!3d35.168545972757045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600376ee7b4fd997%3A0xbc763fe1723b73b1!2z44ix44Kz44Of44Ol44OL44Kx44O844K344On44Oz44ON44OD44OI!5e0!3m2!1sja!2sjp!4v1728606316868!5m2!1sja!2sjp" width="900" height="800" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            
+            <div class="info">
+                <p>〒450-0002 <br>名古屋市中村区名駅4丁目26番25号 メイフィス名駅ビル11階</p>
+                <p>TEL: 052-589-1173</p>
+                <h2>営業時間</h2>
+                <p>月・火・水・木・金: 9:00～17:30</p>
+                <h2>定休日</h2>
+                <p>土日祝日</p>
+            </div>
+        </div>
+    </main>
+
+
+
+    <footer>
+        <div class="foot">
+            <p><a href="legalnotice.html" class="tsth">特定商法取引法に基づく表記</a></p>
+            <p class="copy">&copy; 2024 Tanabe Sho</p>
+        </div>
+    </footer>   
+
+    <script>
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const searchQuery = document.getElementById('search-query').value;
+            
+            if (searchQuery) {
+                window.location.href = `search.html?query=${encodeURIComponent(searchQuery)}`;
+            }
+        });
+    </script>
+
+
+</body>
+</html>

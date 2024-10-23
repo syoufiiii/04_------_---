@@ -1,0 +1,72 @@
+/*====================================================================
+slick
+====================================================================*/
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: border-box;
+}
+.sliderArea {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 100px 25px;
+    overflow: hidden; /* 横スクロールを防ぐ */
+}
+.sliderArea.w300 {
+    max-width: 1000px; /* 横幅を1000pxに拡大 */
+}
+.slick-slide {
+    margin: 0 5px;
+}
+.slick-slide img {
+    width: 100%;
+    height: 500px; /* 縦の500pxはそのまま維持 */
+    object-fit: cover;
+}
+.slick-prev, .slick-next {
+    z-index: 1;
+    width: 100px !important;  /* ボタンの幅を大きく */
+    height: 100px !important; /* ボタンの高さを大きく */
+    border-radius: 50% !important; /* ボタンを丸くする */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.slick-prev:before, .slick-next:before {
+    font-size: 70px !important; /* 矢印アイコンを大きく */
+    color: white !important; /* 矢印の色を白に */
+}
+.slick-slide {
+    transition: all ease-in-out .3s;
+    opacity: .2;
+}
+.slick-active {
+    opacity: 1;
+}
+.slick-current {
+    opacity: 1;
+}
+.thumb {
+    margin: 20px 0 0;
+}
+.thumb .slick-slide {
+    cursor: pointer;
+}
+.thumb .slick-slide:hover {
+    opacity: .7;
+}
+
+/*====================================================================
+.full-screen
+====================================================================*/
+
+.full-screen .slick-list {
+    overflow: visible; /* 横スクロールを防ぐ */
+}
+.full-screen.slider {
+    max-width: 1000px; /* 横幅を1000pxに拡大 */
+    margin: 0 auto;
+}

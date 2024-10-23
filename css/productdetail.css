@@ -1,0 +1,150 @@
+#wrap{
+    display: flex; 
+    padding-top: 150px;
+    padding-bottom: 100px;
+    margin-left: 14vw;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.slider {
+    margin: 30px auto ;
+    max-width: 1500px;
+    width: 800px;
+    height: 800px;
+  }
+.slick-img img {
+    height: auto;
+    width: 800px;
+    height: 800px;
+    object-fit: cover; 
+    border-radius: 5px;
+  }
+
+  .slick-prev, .slick-next {
+    z-index: 1;
+    width: 100px !important;  /* ボタンの幅を大きく */
+    height: 100px !important; /* ボタンの高さを大きく */
+    border-radius: 50% !important; /* ボタンを丸くする */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.slick-prev:before, .slick-next:before {
+    font-size: 70px !important; /* 矢印アイコンを大きく */
+    color: white !important; /* 矢印の色を白に */
+}
+.conta {
+    display: flex;
+    width: 800px;
+    margin-left: 100px;
+    padding: 40px;
+}
+
+.product-info {
+    text-align: left;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 16px;
+    margin-bottom: 20px;
+    height: 200px;
+    max-height: 200px;
+    min-width: 800px;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #999;
+
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #999;
+    font-size: 1.5rem;
+}
+
+.quantity label {
+    margin-right: 10px;
+}
+
+.btnconta {
+    width: 300px;
+  }
+  
+  .field {
+    display: flex;
+  }
+  
+  .inputtext {
+    color:rgba(43, 32, 32, 0.76) ;
+    font-size: 18px;
+    border-left: 0;
+    border-right: 0;
+    width: 80px;
+    line-height: 3rem;
+    text-align: center;
+    border: 1px solid #D7DBDD;
+    padding: 0 10px;
+  }
+  
+  .button {
+    color:rgba(43, 32, 32, 0.76) ;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px 20px;
+    background-color: white;
+    border: 1px solid #D7DBDD;
+    border-radius: 0;
+    outline: 0;
+  }
+  
+.button-61 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 250px;
+    padding: .9em 3.2em .9em 2em;
+    border: none;
+    border-radius: 5px;
+    background-color: #1e50a2;
+    background-image: url(data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2028%2028%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2214%22%20cy%3D%2214%22%20r%3D%2214%22%20style%3D%22fill%3A%23fff%3B%22%2F%3E%0A%3C%2Fsvg%3E);
+    background-position: right 3em center;
+    background-size: 1.2em;
+    background-repeat: no-repeat;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1em;
+    white-space: nowrap;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.button-61:hover {
+    background-color: #1579c0;
+}
+
+.button-61::before,
+.button-61::after {
+    position: absolute;
+    right: calc(3.6em - 1.5px);
+    width: 3px;
+    height: 10px;
+    border-radius: 1px;
+    background-color: #1e50a2;
+    content: '';
+}
+
+.button-61::before {
+    transform: rotate(90deg);
+}

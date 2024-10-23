@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+ 
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    min-width: 1500px;
+}
+
+header {
+    position: absolute;
+    position: fixed;
+    display: flex;
+    max-height: 100px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    background-color: white;
+    z-index: 10;
+    opacity: 0.9;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    background-color: #1E50A2;
+    color: white;
+    padding: 10px;
+    margin-left: 3vw;
+    border-radius: 5px;
+}
+.logo-a{
+    text-decoration: none;
+    color: white;
+}
+
+
+
+nav {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.nav-links {
+    position: relative;
+    list-style: none;
+    display: flex;
+    margin-left: 25vw;
+    font-size: 1.2rem;
+}
+
+.nav-links li a {
+    color: black;
+    text-decoration: none;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 0 20px;
+}
+
+.nav-links li a:hover{
+    opacity: 0.5;
+}
+
+
+.icons {
+    display: flex;
+    margin-left: 12vw;
+}
+.cart-icon:hover{
+    opacity: 0.5;
+}
+.mail-icon{
+    margin-top: 3px;
+}
+.mail-icon:hover{
+    opacity: 0.5;
+}
+.account-icon{
+    margin-top: 1px;
+}
+.account-icon:hover{
+    opacity: 0.5;
+}
+.menu{
+    height: 30px;
+    padding: 0 10px;
+}
+.search-bar {
+    position: relative;
+    text-align: right;
+    margin-left: 1%;
+}
+
+.search-form-3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid #777777;
+    border-radius: 3px;
+}
+
+.search-form-3 input {
+    width: 250px;
+    height: 45px;
+    padding: 5px 15px;
+    border: none;
+    box-sizing: border-box;
+    font-size: 1em;
+    outline: none;
+}
+
+.search-form-3 input::placeholder {
+    color: #777777;
+}
+
+.search-form-3 button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.search-form-3 button::after {
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z' fill='%23777777'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    content: '';
+}
+
+
+
+footer {
+    background-color: #1E50A2;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 100px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.foot{
+    display: flex;
+    margin-left: 40vw;
+}
+
+.copy{
+    margin-top: 3px;
+    padding-left: 20px;
+}
+
+.tsth{
+    color: white;
+    text-decoration: underline;
+}
+.tsth:hover{
+    opacity: 0.5;
+}
+
+
+
+
+
+/* レスポンシブについての記述 */

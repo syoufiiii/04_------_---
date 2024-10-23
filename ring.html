@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECサイト</title>
+
+    <link rel="stylesheet" href="css/component.css" />
+    <link rel="stylesheet" href="css/productlist.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+  </head>
+
+  <body>
+    <a name="title"></a>
+    <header>
+      <nav>
+        <div class="logo">
+          <a class="logo-a" href="index.html">サイトロゴ</a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="ring.html">リング</a></li>
+          <li><a href="necklace.html">ネックレス</a></li>
+          <li><a href="pendant.html">ペンダント</a></li>
+          <li><a href="bracelet.html">ブレスレット</a></li>
+          <li><a href="pierced.html">イヤリング・ピアス</a></li>
+        </ul>
+        <div class="icons">
+          <i class="cart-icon"
+            ><a href="shopingbag.html"
+              ><img class="menu" src="assets/bag.png" /></a
+          ></i>
+          <i class="mail-icon"
+            ><a href="mail.html"><img class="menu" src="assets/mail.png" /></a
+          ></i>
+          <i class="account-icon"
+            ><a href="shop-info.html"
+              ><img class="menu" src="assets/map.png" /></a
+          ></i>
+        </div>
+        <div class="search-bar">
+          <form id="search-form" class="search-form-3">
+            <label>
+              <input
+                type="text"
+                id="search-query"
+                placeholder="キーワードを入力"
+              />
+            </label>
+            <button type="submit" aria-label="検索"></button>
+          </form>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="new-products">
+        <h2 style="font-family: 'Times New Roman', Times, serif">リング</h2>
+        <div id="wrap">
+          <label class="selectbox-3">
+            <select id="sortSelect">
+              <option value="asc">価格の低い順</option>
+              <option value="desc">価格の高い順</option>
+            </select>
+          </label>
+        </div>
+        <div class="product-grid" id="productGrid">
+          <!-- リング商品の表示がここに挿入されます -->
+        </div>
+      </section>
+
+      <div id="toparrow">
+        <a href="#title"
+          ><img
+            src="assets/abovearrow.png"
+            width="100"
+            height="100"
+            alt="上に戻る"
+        /></a>
+      </div>
+    </main>
+
+    <footer>
+      <div class="foot">
+        <p>
+          <a href="legalnotice.html" class="tsth">特定商法取引法に基づく表記</a>
+        </p>
+        <p class="copy">&copy; 2024 Tanabe Sho</p>
+      </div>
+    </footer>
+    <script>
+      // 商品を取得して表示する関数
+      function displayRingProducts(sortOrder = "asc") {
+        const productList = JSON.parse(localStorage.getItem("products")) || [];
+
+        // リングカテゴリーの商品をフィルタリング
+        const ringProducts = productList.filter(
+          (product) => product.category === "リング"
+        );
+
+        // ソート（価格の昇順または降順）
+        if (sortOrder === "asc") {
+          ringProducts.sort((a, b) => a.price - b.price);
+        } else if (sortOrder === "desc") {
+          ringProducts.sort((a, b) => b.price - a.price);
+        }
+
+        const productGrid = document.getElementById("productGrid");
+        productGrid.innerHTML = ""; // 一度内容をクリア
+
+        // 商品を表示
+        ringProducts.forEach((product) => {
+          // 画像が配列の場合、最初の画像を使用
+          const productImage = Array.isArray(product.image)
+            ? product.image[0]
+            : product.image;
+
+          const productItem = document.createElement("div");
+          productItem.classList.add("product-item");
+          productItem.innerHTML = `
+                    <div class="product-image">
+                        <a href="productdetail.html?id=${product.id}">
+                            <img src="${productImage}" alt="${
+            product.name
+          }" loading="lazy">
+                        </a>
+                    </div>
+                    <p>${product.name}</p>
+                    <p>¥${product.price.toLocaleString()}</p>
+                `;
+          productGrid.appendChild(productItem);
+        });
+      }
+
+      // ページロード時にリングカテゴリーの商品を表示
+      window.onload = function () {
+        displayRingProducts();
+      };
+
+      // ソート変更時に再表示
+      document
+        .getElementById("sortSelect")
+        .addEventListener("change", function () {
+          const sortOrder = this.value;
+          displayRingProducts(sortOrder);
+        });
+    </script>
+
+    <script>
+      document
+        .getElementById("search-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const searchQuery = document.getElementById("search-query").value;
+
+          if (searchQuery) {
+            window.location.href = `search.html?query=${encodeURIComponent(
+              searchQuery
+            )}`;
+          }
+        });
+    </script>
+  </body>
+</html>

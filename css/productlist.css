@@ -1,0 +1,82 @@
+#wrap{
+    width: 100%;
+}
+
+
+.selectbox-3 {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    margin-left: 69.4vw;
+}
+
+.selectbox-3::after {
+    position: absolute;
+    right: 15px;
+    width: 10px;
+    height: 7px;
+    background-color: #535353;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    content: '';
+    pointer-events: none;
+}
+
+.selectbox-3 select {
+    appearance: none;
+    min-width: 230px;
+    height: 2.8em;
+    padding: .4em calc(.8em + 30px) .4em .8em;
+    border: 1px solid #d0d0d0;
+    border-radius: 3px;
+    background-color: #fff;
+    color: #333333;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.new-products {
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 100px;
+    max-width: 85%;
+}
+
+.new-products h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    padding: 0 20px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.product-item {
+    margin-top: 30px;
+    text-align: center;
+}
+
+
+.product-image img {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    max-height: 300px;
+    min-width: 300px;
+    min-height: 300px;
+    object-fit: cover; /* 比率を維持しながら、全体を枠内に収める */
+    border-radius: 5px;
+}
+
+#toparrow {
+    position: fixed; /* 固定位置にする */
+    right: 3%;      /* 右からの位置 */
+    bottom: 8%;     /* 下からの位置 */
+    z-index: 10;    /* 他の要素より前に表示 */
+    opacity: 0.8;
+}

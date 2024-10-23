@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECサイト</title>
+    
+    <link rel="stylesheet" href="css/component.css">
+    <link rel="stylesheet" href="css/mail.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a class="logo-a" href="index.html">サイトロゴ</a></div>
+
+            <ul class="nav-links">
+                <li><a href="ring.html">リング</a></li>
+                <li><a href="necklace.html">ネックレス</a></li>
+                <li><a href="pendant.html">ペンダント</a></li>
+                <li><a href="bracelet.html">ブレスレット</a></li>
+                <li><a href="pierced.html">イヤリング・ピアス</a></li>
+            </ul>
+
+            <div class="icons">
+                <i class="cart-icon"><a href="shopingbag.html"><img class="menu" src="assets/bag.png"></a></i>
+                <i class="mail-icon"><a href="mail.html"><img class="menu" src="assets/mail.png"></a></i>
+                <i class="account-icon"><a href="shop-info.html"><img class="menu" src="assets/map.png"></a></i>
+            </div>
+
+            <div class="search-bar">
+                <form id="search-form" class="search-form-3">
+                    <label>
+                        <input type="text" id="search-query" placeholder="キーワードを入力">
+                    </label>
+                    <button type="submit" aria-label="検索"></button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>お問い合わせフォーム</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">氏名</label>
+                    <input type="text" id="name" name="name" required minlength="2" maxlength="50" title="2文字以上50文字以下で入力してください">
+                </div>
+                <div class="form-group">
+                    <label for="email">メールアドレス</label>
+                    <input type="email" id="email" name="email" required title="有効なメールアドレスを入力してください">
+                </div>
+                <div class="form-group">
+                    <label for="message">お問い合わせ内容</label>
+                    <textarea id="message" name="message" rows="10" required minlength="10" title="お問い合わせ内容は10文字以上で入力してください"></textarea>
+                </div>
+                <button id="mailbtn" type="submit" class="submit-btn">送信</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="foot">
+            <p><a href="legalnotice.html" class="tsth">特定商法取引法に基づく表記</a></p>
+            <p class="copy">&copy; 2024 Tanabe Sho</p>
+        </div>
+    </footer>   
+
+    <script>
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const searchQuery = document.getElementById('search-query').value;
+            
+            if (searchQuery) {
+                window.location.href = `search.html?query=${encodeURIComponent(searchQuery)}`;
+            }
+        });
+
+        // フォーム送信時のバリデーションとページ遷移処理
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            if (!this.checkValidity()) {
+                event.preventDefault();  // バリデーション失敗時は送信を中止
+                this.reportValidity();   // ブラウザのバリデーションメッセージを表示
+            } else {
+                event.preventDefault();  // デフォルトの送信を防止
+                window.location.href = 'mailcomp.html';  // mailcomp.htmlに遷移
+            }
+        });
+    </script>
+
+</body>
+</html>

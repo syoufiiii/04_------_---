@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECサイト</title>
+    
+    <link rel="stylesheet" href="css/component.css">
+    <link rel="stylesheet" href="css/ordercomp.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a class="logo-a" href="index.html">サイトロゴ</a></div>
+
+            <ul class="nav-links">
+                <li><a href="ring.html">リング</a></li>
+                <li><a href="necklace.html">ネックレス</a></li>
+                <li><a href="pendant.html">ペンダント</a></li>
+                <li><a href="bracelet.html">ブレスレット</a></li>
+                <li><a href="pierced.html">イヤリング・ピアス</a></li>
+            </ul>
+
+            <div class="icons">
+                <i class="cart-icon"><a href="shopingbag.html"><img class="menu" src="assets/bag.png"></a></i>
+                <i class="mail-icon"><a href="mail.html"><img class="menu" src="assets/mail.png"></a></i>
+                <i class="account-icon"><a href="shop-info.html"><img class="menu" src="assets/map.png"></a></i>
+            </div>
+
+            <div class="search-bar">
+                <form id="search-form" class="search-form-3">
+                    <label>
+                        <input type="text" id="search-query" placeholder="キーワードを入力">
+                    </label>
+                    <button type="submit" aria-label="検索"></button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <div class="container">
+            <div class="back-to-shop">
+                <a href="index.html" id="backToShop">←ショップに戻る</a>
+            </div>
+            <div class="order-complete">
+                <h1>ご注文ありがとうございました</h1>
+                <button id="downloadCsv">ご利用明細をダウンロード</button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="foot">
+            <p><a href="legalnotice.html" class="tsth">特定商法取引法に基づく表記</a></p>
+            <p class="copy">&copy; 2024 Tanabe Sho</p>
+        </div>
+    </footer>
+
+    <script>
+        // 領収書のCSVをダウンロードする関数
+        document.getElementById('downloadCsv').addEventListener('click', function() {
+            const orderInfo = JSON.parse(localStorage.getItem('orderInfo'));
+            const shoppingBag = JSON.parse(localStorage.getItem('shoppingBag'));
+            
+            if (!orderInfo || !shoppingBag) {
+                alert('ご利用明細を生成する情報がありません。');
+                return;
+            }
+
+            // CSV形式のテキストを作成
+            let csvContent = "データ,値\n";
+            csvContent += `お名前,${orderInfo.name}\n`;
+            csvContent += `ご住所,${orderInfo.address}\n`;
+            csvContent += `電話番号,${orderInfo.phone}\n`;
+            csvContent += `支払い方法,${orderInfo.paymentMethod === 'credit' ? 'クレジットカード' : 'コンビニ決済'}\n\n`;
+            csvContent += "商品名,価格,数量\n";
+
+            let totalSum = 0;
+            shoppingBag.forEach(product => {
+                const totalPrice = product.price * product.quantity;
+                csvContent += `${product.name},${totalPrice},${product.quantity}\n`;
+                totalSum += totalPrice;
+            });
+
+            csvContent += `\n合計金額,${totalSum}円\n`;
+
+            // CSVファイルを作成してダウンロード
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'invoice.csv');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        // ショップに戻るまたは他のリンクを押した瞬間にlocalStorageをクリア
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                localStorage.clear();
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const searchQuery = document.getElementById('search-query').value;
+            
+            if (searchQuery) {
+                window.location.href = `search.html?query=${encodeURIComponent(searchQuery)}`;
+            }
+        });
+    </script>
+</body>
+</html>

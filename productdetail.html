@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECサイト</title>
+    
+    <link rel="stylesheet" href="css/component.css">
+    <link rel="stylesheet" href="css/productdetail.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a class="logo-a" href="index.html">サイトロゴ</a></div>
+
+            <ul class="nav-links">
+                <li><a href="ring.html">リング</a></li>
+                <li><a href="necklace.html">ネックレス</a></li>
+                <li><a href="pendant.html">ペンダント</a></li>
+                <li><a href="bracelet.html">ブレスレット</a></li>
+                <li><a href="pierced.html">イヤリング・ピアス</a></li>
+            </ul>
+
+            <div class="icons">
+                <i class="cart-icon"><a href="shopingbag.html"><img class="menu" src="assets/bag.png"></a></i>
+                <i class="mail-icon"><a href="mail.html"><img class="menu" src="assets/mail.png"></a></i>
+                <i class="account-icon"><a href="shop-info.html"><img class="menu" src="assets/map.png"></a></i>
+            </div>
+
+            <div class="search-bar">
+                <form id="search-form" class="search-form-3">
+                    <label>
+                        <input type="text" id="search-query" placeholder="キーワードを入力">
+                    </label>
+                    <button type="submit" aria-label="検索"></button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div id="wrap">
+            <div class="container">
+                <div class="slider">
+                    <!-- 商品の画像がここに表示されます -->
+                </div>
+            </div>
+
+            <div class="conta">
+                <div class="product-info">
+                    <h1 class="product-name">商品名テキスト</h1>
+                    <p class="description">商品説明がここに入ります。</p>
+                    <p class="price">¥0(税込)</p>
+                    <div class="quantity">
+                        <label for="quantity">数量</label>
+
+                        <div class="btnconta">
+                          <div class="field">
+                            <button class="button" id="down">－</button>
+                            <input type="text" value="1" class="inputtext" id="textbox">
+                            <button class="button" id="up">＋</button>
+                          </div>
+                        </div>
+
+                    </div>
+                    <button class="button-61" id="addToBag">バッグに追加</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="foot">
+            <p><a href="legalnotice.html" class="tsth">特定商法取引法に基づく表記</a></p>
+            <p class="copy">&copy; 2024 Tanabe Sho</p>
+        </div>
+    </footer>   
+
+    <!-- 商品詳細の表示に必要なJavaScript --><script>
+    // URLパラメータから商品IDを取得する関数
+    function getProductIdFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        return parseInt(params.get('id'), 10); // idを数値として取得
+    }
+
+    // 商品IDに基づいて商品詳細を表示する関数
+    function displayProductDetails() {
+        const productId = getProductIdFromURL();
+        const products = localStorage.getItem('products');
+
+        if (products) {
+            const productList = JSON.parse(products);
+            const product = productList.find(item => item.id === productId);
+
+            if (product) {
+                document.querySelector('.product-name').textContent = product.name;
+                document.querySelector('.price').textContent = `¥${product.price.toLocaleString()} (税込)`;
+                document.querySelector('.description').textContent = `${product.name} の素晴らしい品質をご紹介。`;
+
+                const slider = document.querySelector('.slider');
+                slider.innerHTML = ''; // スライダーをクリア
+
+                // 画像が配列かどうかを確認
+                if (Array.isArray(product.image)) {
+                    // 画像配列をスライダーに追加
+                    product.image.forEach(img => {
+                        slider.innerHTML += `
+                            <div class="slick-img"><img src="${img}" alt="${product.name}"></div>`;
+                    });
+                } else {
+                    // 画像が1枚だけの場合の処理（配列でない場合）
+                    slider.innerHTML = `
+                        <div class="slick-img"><img src="${product.image}" alt="${product.name}"></div>`;
+                }
+
+                // スライダーの再初期化
+                $(slider).slick({
+                    dots: true,
+                    autoplay: true,
+                    autoplaySpeed: 3000,
+                    speed: 1000,
+                    slidesToShow: 1,
+                    infinite: true,
+                });
+            } else {
+                alert('商品が見つかりません');
+            }
+        } else {
+            alert('商品データが見つかりません');
+        }
+    }
+    window.onload = function() {
+    displayProductDetails();
+
+    let quantity = 1; // 初期数量を1に設定
+
+    // 数量を増やす
+    document.getElementById('up').addEventListener('click', function() {
+        quantity++;
+        document.getElementById('textbox').value = quantity;
+    });
+
+    // 数量を減らす（1以下にはならないように制限）
+    document.getElementById('down').addEventListener('click', function() {
+        if (quantity > 1) {
+            quantity--;
+            document.getElementById('textbox').value = quantity;
+        }
+    });
+
+    // キーボードで数量を直接変更する際のバリデーション
+    document.getElementById('textbox').addEventListener('input', function(event) {
+        let inputValue = parseInt(event.target.value, 10);
+
+        if (isNaN(inputValue) || inputValue < 1) {
+            event.target.value = 1; // 1未満は無効
+        } else {
+            quantity = inputValue; // 有効な数値を数量に反映
+        }
+    });
+
+    // 「バッグに追加」ボタンのクリックイベント
+    document.getElementById('addToBag').addEventListener('click', function() {
+        const productId = getProductIdFromURL();
+        const products = localStorage.getItem('products');
+        const productList = JSON.parse(products);
+        const product = productList.find(item => item.id === productId);
+        const quantity = parseInt(document.getElementById('textbox').value, 10);
+
+        if (product) {
+            addToShoppingBag(product, quantity);
+        } else {
+            alert('商品が見つかりません');
+        }
+    });
+};
+
+// 商品をショッピングバッグに追加する関数
+function addToShoppingBag(product, quantity) {
+    // localStorageに保存されたショッピングバッグのデータを取得
+    let shoppingBag = localStorage.getItem('shoppingBag');
+    shoppingBag = shoppingBag ? JSON.parse(shoppingBag) : [];
+
+    // 既にショッピングバッグにある商品かどうか確認
+    const existingProduct = shoppingBag.find(item => item.id === product.id);
+
+    if (existingProduct) {
+        // 既存の商品があれば数量を更新
+        existingProduct.quantity += quantity;
+    } else {
+        // 新しい商品をバッグに追加
+        shoppingBag.push({
+            ...product,
+            quantity: quantity
+        });
+    }
+
+    // 更新されたショッピングバッグをlocalStorageに保存
+    localStorage.setItem('shoppingBag', JSON.stringify(shoppingBag));
+    alert('商品がバッグに追加されました');
+}
+
+        // 検索フォームのイベントリスナーを追加
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault();  // フォームのデフォルト動作を無効化
+    
+            const searchQuery = document.getElementById('search-query').value;
+            
+            // クエリパラメータを付けて検索結果ページに遷移
+            if (searchQuery) {
+                window.location.href = `search.html?query=${encodeURIComponent(searchQuery)}`;
+            }
+        });
+</script>
+
+
+</body>
+</html>

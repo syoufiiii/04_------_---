@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECサイト</title>
+    
+    <link rel="stylesheet" href="css/component.css">
+    <link rel="stylesheet" href="css/orderdetail.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a class="logo-a" href="index.html">サイトロゴ</a></div>
+
+            <ul class="nav-links">
+                <li><a href="ring.html">リング</a></li>
+                <li><a href="necklace.html">ネックレス</a></li>
+                <li><a href="pendant.html">ペンダント</a></li>
+                <li><a href="bracelet.html">ブレスレット</a></li>
+                <li><a href="pierced.html">イヤリング・ピアス</a></li>
+            </ul>
+
+            <div class="icons">
+                <i class="cart-icon"><a href="shopingbag.html"><img class="menu" src="assets/bag.png"></a></i>
+                <i class="mail-icon"><a href="mail.html"><img class="menu" src="assets/mail.png"></a></i>
+                <i class="account-icon"><a href="shop-info.html"><img class="menu" src="assets/map.png"></a></i>
+            </div>
+
+            <div class="search-bar">
+                <form id="search-form" class="search-form-3">
+                    <label>
+                        <input type="text" id="search-query" placeholder="キーワードを入力">
+                    </label>
+                    <button type="submit" aria-label="検索"></button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>ご注文内容</h1>
+            <div class="order-summary">
+                <h2>お支払い明細</h2>
+                <div id="wrap">
+                    <!-- 商品情報がここに挿入されます -->
+                </div>
+                <p class="total">合計: 0円</p>
+            </div>
+
+            <div class="payment-method">
+                <h2>お支払い方法</h2>
+                <div class="payment-info">
+                    <p id="payment-method-info">支払い方法がここに表示されます</p>
+                    <button class="change-btn" id="changePaymentBtn"><a href="pay-info.html">情報変更</a></button>
+                </div>
+            </div>
+
+            <div class="shipping-info">
+                <h2>配送情報</h2>
+                <p>お名前: 名前がここに表示されます</p>
+                <p>ご住所: 住所がここに表示されます</p>
+                <p>電話番号: 電話番号がここに表示されます</p>
+            </div>
+
+            <div class="button-container">
+                <button class="submit-btn"><a href="ordercomp.html">注文確定</a></button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="foot">
+            <p><a href="legalnotice.html" class="tsth">特定商法取引法に基づく表記</a></p>
+            <p class="copy">&copy; 2024 Tanabe Sho</p>
+        </div>
+    </footer>   
+
+    <script>
+        // localStorageから注文情報を取得して表示する関数
+        function displayOrderDetails() {
+            const orderInfo = JSON.parse(localStorage.getItem('orderInfo'));
+            const shoppingBag = JSON.parse(localStorage.getItem('shoppingBag'));
+            
+            if (!orderInfo || !shoppingBag) {
+                alert('注文情報が見つかりません。');
+                return;
+            }
+
+            // 配送情報の表示
+            document.querySelector('.shipping-info').innerHTML = `
+                <h2>配送情報</h2>
+                <p>お名前: ${orderInfo.name}</p>
+                <p>ご住所: ${orderInfo.address}</p>
+                <p>電話番号: ${orderInfo.phone}</p>
+            `;
+
+            // 支払い方法の表示
+            let paymentMethodText = '';
+            if (orderInfo.paymentMethod === 'credit') {
+                const cardNumber = orderInfo.paymentDetails.cardNumber;
+                const maskedCardNumber = '**** **** **** ' + cardNumber.slice(-4); // 下4桁を残して隠す
+                paymentMethodText = `クレジットカード: ${maskedCardNumber}`;
+            } else {
+                paymentMethodText = 'コンビニ決済';
+            }
+
+            document.getElementById('payment-method-info').textContent = paymentMethodText;
+
+            // 注文商品の表示
+            const orderWrap = document.getElementById('wrap');
+            let totalSum = 0;
+            
+            shoppingBag.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.classList.add('order-item');
+                productElement.innerHTML = `
+                    <img src="${product.image}" alt="商品画像">
+                    <div class="item-info">
+                        <p>${product.name}</p>
+                        <p>${(product.price * product.quantity).toLocaleString()}円</p>
+                    </div>
+                `;
+                orderWrap.appendChild(productElement);
+                totalSum += product.price * product.quantity;
+            });
+
+            // 合計金額の表示
+            document.querySelector('.total').textContent = `合計: ${totalSum.toLocaleString()}円`;
+        }
+
+        // ページロード時に注文情報を表示
+        window.onload = displayOrderDetails;
+
+        // 検索フォームの送信イベント
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            const searchQuery = document.getElementById('search-query').value;
+            if (searchQuery) {
+                window.location.href = `search.html?query=${encodeURIComponent(searchQuery)}`;
+            }
+        });
+    </script>
+
+</body>
+</html>

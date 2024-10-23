@@ -1,0 +1,88 @@
+
+.container {
+    width: 50%;
+    margin: 0 auto;
+    padding: 150px 20px 20px 20px;
+    min-height: 1050px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+#name {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+#address {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+#phone {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.payment-method {
+    margin-top: 20px;
+}
+
+.radio-group {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transform: scale(1.2);
+    margin-left: 110px;
+}
+
+#credit-details input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-btn {
+    width: 300px;
+    padding: 15px;
+    margin-left: 18vw;
+    background-color: #1e50a2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 5px;
+}
+
+.submit-btn:hover {
+    background-color: #1579c0;
+}
