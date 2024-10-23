@@ -1,124 +1,148 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ECサイト</title>
-    
-    <link rel="stylesheet" href="css/component.css">
-    <link rel="stylesheet" href="css/legalnotice.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-</head>
 
+    <link rel="stylesheet" href="css/component.css" />
+    <link rel="stylesheet" href="css/legalnotice.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav>
-            <div class="logo"><a class="logo-a" href="index.html">サイトロゴ</a></div>
+      <nav>
+        <div class="logo">
+          <a class="logo-a" href="index.html">サイトロゴ</a>
+        </div>
 
+        <ul class="nav-links">
+          <li><a href="ring.html">リング</a></li>
+          <li><a href="necklace.html">ネックレス</a></li>
+          <li><a href="pendant.html">ペンダント</a></li>
+          <li><a href="bracelet.html">ブレスレット</a></li>
+          <li><a href="pierced.html">イヤリング・ピアス</a></li>
+        </ul>
 
-        
-            <ul class="nav-links">
-                <li><a href="ring.html">リング</a></li>
-                <li><a href="necklace.html">ネックレス</a></li>
-                <li><a href="pendant.html">ペンダント</a></li>
-                <li><a href="bracelet.html">ブレスレット</a></li>
-                <li><a href="pierced.html">イヤリング・ピアス</a></li>
-            </ul>
+        <div class="icons">
+          <i class="cart-icon"
+            ><a href="shopingbag.html"
+              ><img class="menu" src="assets/bag.png" /></a
+          ></i>
+          <i class="mail-icon"
+            ><a href="mail.html"><img class="menu" src="assets/mail.png" /></a
+          ></i>
+          <i class="account-icon"
+            ><a href="shop-info.html"
+              ><img class="menu" src="assets/map.png" /></a
+          ></i>
+        </div>
 
-
-        
-            <div class="icons">
-                <i class="cart-icon"><a href="shopingbag.html"><img class="menu" src="assets/bag.png"></a></i>
-                <i class="mail-icon"><a href="mail.html"><img class="menu" src="assets/mail.png"></a></i>
-                <i class="account-icon"><a href="shop-info.html"><img class="menu" src="assets/map.png"></a></i>
-            </div>
-
-            <div class="search-bar">
-                <form id="search-form" class="search-form-3">
-                    <label>
-                        <input type="text" id="search-query" placeholder="キーワードを入力">
-                    </label>
-                    <button type="submit" aria-label="検索"></button>
-                </form>
-            </div>
-        </nav>
-
-
+        <div class="search-bar">
+          <form id="search-form" class="search-form-3">
+            <label>
+              <input
+                type="text"
+                id="search-query"
+                placeholder="キーワードを入力"
+              />
+            </label>
+            <button type="submit" aria-label="検索"></button>
+          </form>
+        </div>
+      </nav>
     </header>
 
     <main>
-        <div id="tokutei">
-            <div class="container">
-                <h1>特定商法取引法に基づく表記
-                </h1>
-                <div class="company-info">
-                    <p><strong>株式会社：</strong>コミュニケーションネット</p>
-                    <p><strong>代表者：</strong>代表取締役 山田 太郎</p>
-                </div>
-                <div class="address">
-                    <h2>所在地</h2>
-                    <p>〒450-0002 名古屋市中区名駅南4丁目26番25号 メイフル名駅ビル1階</p>
-                    <p>TEL: 052-589-1173</p>
-                </div>
-                <div class="business-hours">
-                    <h2>営業時間</h2>
-                    <p>営業時間: 9:00～17:30（定休日:土日祝）</p>
-                    <p>お問合せ: メールでのお問い合わせも可能です。</p>
-                </div>
-                <div class="contact">
-                    <h2>連絡先</h2>
-                    <p>Email: xxxx@xxxxxx.com</p>
-                    <p>サイトURL: <a href="http://xxxxxx.com">xxxxxx.com</a></p>
-                </div>
-                <div class="payment">
-                    <h2>お支払い方法</h2>
-                    <p>銀行振込: 銀行名 ○○銀行 支店名 ○○支店 口座番号 123456789</p>
-                    <p>クレジットカード: VISA, MasterCard, JCB, AMEX</p>
-                    <p></p>
-                    <h2>支払時期</h2>
-                    <p>クレジットカード決済：商品注文時にお支払いが確定します</p>
-                    <p>コンビニ決済:注文後2日以内にお支払いください。</p>
-                    <p>代引き：商品到着時、配達員の方へ現金でお支払いください。</p>
-                    <h2>商品の引渡時期</h2>
-                    <p>ご注文日から3営業日以内に発送いたします。</p>
-                    <h2>返品・交換</h2>
-                    <p>商品到着後10日以内に限り返品・交換が可能です。</p>
-                    <p>返品送料商品に欠陥がある場合には当方負担、お客様のご都合による返品・交換の場合<br>にはお客様負担となります。
-                    </p>
-                </div>
-                <div class="footer">
-                    <p>販売者情報は変更される可能性がありますので、最新情報をご確認ください。</p>
-                </div>
-            </div>
+      <div id="tokutei">
+        <div class="container">
+          <h1>特定商法取引法に基づく表記</h1>
+          <div class="company-info">
+            <p><strong>株式会社：</strong>aaaaaaaaaaaaa</p>
+            <p><strong>代表者：</strong>代表取締役 山田 太郎</p>
+          </div>
+          <div class="address">
+            <h2>所在地</h2>
+            <p>〒181-1111 名古屋市</p>
+            <p>TEL: 052-589-1173</p>
+          </div>
+          <div class="business-hours">
+            <h2>営業時間</h2>
+            <p>営業時間: 9:00～17:30（定休日:土日祝）</p>
+            <p>お問合せ: メールでのお問い合わせも可能です。</p>
+          </div>
+          <div class="contact">
+            <h2>連絡先</h2>
+            <p>Email: xxxx@xxxxxx.com</p>
+            <p>サイトURL: <a href="http://xxxxxx.com">xxxxxx.com</a></p>
+          </div>
+          <div class="payment">
+            <h2>お支払い方法</h2>
+            <p>銀行振込: 銀行名 ○○銀行 支店名 ○○支店 口座番号 123456789</p>
+            <p>クレジットカード: VISA, MasterCard, JCB, AMEX</p>
+            <p></p>
+            <h2>支払時期</h2>
+            <p>クレジットカード決済：商品注文時にお支払いが確定します</p>
+            <p>コンビニ決済:注文後2日以内にお支払いください。</p>
+            <p>代引き：商品到着時、配達員の方へ現金でお支払いください。</p>
+            <h2>商品の引渡時期</h2>
+            <p>ご注文日から3営業日以内に発送いたします。</p>
+            <h2>返品・交換</h2>
+            <p>商品到着後10日以内に限り返品・交換が可能です。</p>
+            <p>
+              返品送料商品に欠陥がある場合には当方負担、お客様のご都合による返品・交換の場合<br />にはお客様負担となります。
+            </p>
+          </div>
+          <div class="footer">
+            <p>
+              販売者情報は変更される可能性がありますので、最新情報をご確認ください。
+            </p>
+          </div>
         </div>
-
+      </div>
     </main>
 
-
-
     <footer>
-        <div class="foot">
-            <p><a href="legalnotice.html" class="tsth">特定商法取引法に基づく表記</a></p>
-            <p class="copy">&copy; 2024 Tanabe Sho</p>
-        </div>
-    </footer>   
+      <div class="foot">
+        <p>
+          <a href="legalnotice.html" class="tsth">特定商法取引法に基づく表記</a>
+        </p>
+        <p class="copy">&copy; 2024 Tanabe Sho</p>
+      </div>
+    </footer>
 
     <script>
-        document.getElementById('search-form').addEventListener('submit', function(event) {
-            event.preventDefault(); 
+      document
+        .getElementById("search-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
 
-            const searchQuery = document.getElementById('search-query').value;
-            
-            if (searchQuery) {
-                window.location.href = `search.html?query=${encodeURIComponent(searchQuery)}`;
-            }
+          const searchQuery = document.getElementById("search-query").value;
+
+          if (searchQuery) {
+            window.location.href = `search.html?query=${encodeURIComponent(
+              searchQuery
+            )}`;
+          }
         });
     </script>
-
-
-</body>
+  </body>
 </html>
